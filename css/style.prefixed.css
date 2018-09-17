@@ -1,0 +1,165 @@
+@charset "UTF-8";
+body {
+  padding: 0;
+  text-align: center;
+  background-color: grey;
+}
+
+.hero {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 20vw;
+  background-image: url("https://images.unsplash.com/photo-1510193806518-f731c70a35bb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=85c7aeef09b8a00d6a6b3cdb88451db5&auto=format&fit=crop&w=1050&q=80");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  font-size: 100px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.fa {
+  padding: 20px 40px 0 40px;
+}
+
+.info {
+  padding: 10px;
+}
+
+.btn {
+  border-radius: 12px;
+}
+
+.info p {
+  color: yellow;
+}
+
+button {
+  display: inline-block;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 15px 45px;
+  margin: 40px;
+  font-size: 20px;
+}
+
+.table {
+  width: 500px;
+  margin: 50px;
+  text-align: center;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.modal {
+  display: none;
+  background: #fff;
+  width: 600px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fce7e7;
+  transform: translate3d(-50%, -50%, 0);
+  overflow-y: auto;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  color: #000;
+  text-decoration: none;
+}
+
+.modal header {
+  font-size: 20px;
+  line-height: 30px;
+  min-height: 30px;
+  font-weight: bold;
+  padding: 0 30px;
+}
+
+.modal .content {
+  min-height: 30px;
+  padding: 5px 30px;
+}
+
+.modal2 {
+  display: none;
+  background: #fff;
+  width: 600px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #fce7e7;
+  transform: translate3d(-50%, -50%, 0);
+  overflow-y: auto;
+}
+
+.modal2.show {
+  display: block;
+}
+
+.modal2 legend {
+  background-color: #000;
+  color: #fff;
+  padding: 3px 6px;
+}
+
+.modal2 .username {
+  margin: 1rem 0;
+}
+
+.modal2 label {
+  font-size: .8rem;
+}
+
+.modal2 input:invalid + span:after {
+  content: '✖';
+  color: #f00;
+  padding-left: 5px;
+}
+
+.modal2 input:valid + span:after {
+  content: '✓';
+  color: #26b72b;
+  padding-left: 5px;
+}
+/*# sourceMappingURL=style.prefixed.css.map */
