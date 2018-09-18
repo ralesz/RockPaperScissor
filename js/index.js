@@ -1,3 +1,4 @@
+
 var compChoice;
 var userChoice; 
 var gameover = 'Game over, please press the new game button!';
@@ -10,9 +11,9 @@ var params = {
   countRounds: 0, 
   endMatch: 0,
   progress: []};
-  console.log(params.compScore);
 
-var buttonChoice = document.querySelectorAll('.player-move');
+(function(){
+    var buttonChoice = document.querySelectorAll('.player-move');
 	  for(var i = 0; i < buttonChoice.length; i++){
     buttonChoice[i].addEventListener('click', function(event) { 
         var gameButtonAtribute = event.target.getAttribute("data-move");
@@ -21,10 +22,12 @@ var buttonChoice = document.querySelectorAll('.player-move');
       }
 
 //czekaj na wciśnięcie przyciusku start i uruchom grę
+
     var modalLinks = document.getElementById('NewGame');
     for(var i = 0; i < modalLinks.length; i++){
         modalLinks[i].addEventListener('click', startNewGame);
     }
+})();
 
 // function getDateFromModal () {
 //     document.querySelector('#modal-overlay').classList.add('show');
@@ -33,23 +36,18 @@ var buttonChoice = document.querySelectorAll('.player-move');
 //     console.log(params.countRounds);
 // }
 
-
 //funkcja losowania wyboru komputera
 function getCompChoice() {
   var compChooses = Math.floor(Math.random() * 3 + 1);
   return compChooses;
 };
 
+
+
 //funkcja start nowej gry i resetu
 function startNewGame () {
   newTable()
   params.countRounds = window.prompt('How many rounds do you wanna play?')
-
-  // document.querySelector('#modal-overlay').classList.add('show');
-  // document.querySelector("#modal-start").classList.add('show');
-  // params.countRounds = document.getElementById("countRounds");
-  // console.log(params.countRounds);
-
 
   params.playerScore = 0;
   params.compScore = 0;
@@ -75,12 +73,14 @@ function startNewGame () {
 
 };
 
+
 //funkcja czyszczenia tabeli
 function newTable() {
 	var table = document.getElementById("tablescore");
 	var rowNumbers = document.getElementById("tablescore").rows.length;
 	for (var i = 1; i < rowNumbers; i++) {
-		table.deleteRow(1);
+    table.deleteRow(1);
+    document.getElementById('currentRound').innerHTML = '';
 	}
 }
 
@@ -143,6 +143,8 @@ else {
   else if (compChoice == 3) {compChoice = 'scissor'};
   
   //podaj wyniki wyboru i losowania
+  var currentRound = (params.rounds + 1);
+  document.getElementById('currentRound').innerHTML = 'Current round: ' + currentRound;
   document.getElementById('playerResult').innerHTML = 'You chose ' + userChoice + '.';
   document.getElementById('compResult').innerHTML = 'The computer chose ' +  compChoice + '.';
   document.getElementById('winnerGame').innerHTML = '';
@@ -165,9 +167,6 @@ else {
     compC: compChoice,
     roundW: roundwinner
   }
-  // console.log(userChoice);
-  // console.log(compChoice);
-  // console.log(roundwinner);
   params.progress.push(currentRound);
   showResult()
 }
@@ -242,29 +241,27 @@ function showResult() {
 
 var showModal = function(event){
   event.preventDefault();		
-  
   //znajdz aktywny modal  
-  var activeModalLink = event.target.getAttribute('href');
-    
- //dodanie klasy "show" do aktywnego modala
+  var activeModalLink = event.target.getAttribute('href');  
+  //dodanie klasy "show" do aktywnego modala
   document.querySelector('#modal-overlay').classList.add('show');
   document.querySelector(activeModalLink).classList.add('show');     
-  };
+};
 
+(function () {
   var allModalLinks = document.querySelectorAll('.show-modal');
   for(var i = 0; i < allModalLinks.length; i++){
   allModalLinks[i].addEventListener('click', showModal);
   }
+})();
 
-// Dodajemy też funkcję zamykającą modal, oraz przywiązujemy ją do kliknięć na elemencie z klasą "close". 
+// Funkcja zamykającą modal, oraz przywiązujemy ją do kliknięć na elemencie z klasą "close". 
 
-  var hideModal = function(event){
+var hideModal = function(event){
   event.preventDefault();
   document.querySelector('#modal-overlay').classList.remove('show');  	
-  
 
   var element = document.getElementById('txt_modal1');
-  console.log(element);
   while (element.firstChild) {
   element.removeChild(element.firstChild);
   }
@@ -275,22 +272,23 @@ var showModal = function(event){
     for (n = 0; n < allModal.length; n++) {
         allModal[n].classList.remove('show');
     }
-  };	
+};	
 
+(function () {
   var closeButtons = document.querySelectorAll('.modal .close');	
   for(var i = 0; i < closeButtons.length; i++){
     closeButtons[i].addEventListener('click', hideModal);
   }
 
 // zamnknięcie - kliknięcie w overlay 
-
   document.querySelector('#modal-overlay').addEventListener('click', hideModal);
 
 // propagację kliknięć z modala 
-
-  var modals = document.querySelectorAll('.modal');	
+var modals = document.querySelectorAll('.modal');	
   for(var i = 0; i < modals.length; i++){
   modals[i].addEventListener('click', function(event){
   event.stopPropagation();
   });
 }
+
+})();
