@@ -1,4 +1,5 @@
-
+'use strict';
+(function () {
 var compChoice;
 var userChoice; 
 var gameover = 'Game over, please press the new game button!';
@@ -12,7 +13,6 @@ var params = {
   endMatch: 0,
   progress: []};
 
-(function(){
     var buttonChoice = document.querySelectorAll('.player-move');
 	  for(var i = 0; i < buttonChoice.length; i++){
     buttonChoice[i].addEventListener('click', function(event) { 
@@ -21,13 +21,13 @@ var params = {
         });
       }
 
-//czekaj na wciśnięcie przyciusku start i uruchom grę
+//czekaj na wciśnięcie przyciysku start i uruchom grę
 
-    var modalLinks = document.getElementById('NewGame');
+    var modalLinks = document.querySelectorAll(".btn");
     for(var i = 0; i < modalLinks.length; i++){
         modalLinks[i].addEventListener('click', startNewGame);
-    }
-})();
+    };
+
 
 // function getDateFromModal () {
 //     document.querySelector('#modal-overlay').classList.add('show');
@@ -41,7 +41,6 @@ function getCompChoice() {
   var compChooses = Math.floor(Math.random() * 3 + 1);
   return compChooses;
 };
-
 
 
 //funkcja start nowej gry i resetu
@@ -59,7 +58,6 @@ function startNewGame () {
   document.getElementById('playerResult').innerHTML = '';
   document.getElementById('compResult').innerHTML = '';
   document.getElementById('winner').innerHTML = '';
-  // document.getElementById('draw').innerHTML = '0';
   document.getElementById('winnerGame').innerHTML = '';
   document.getElementById('info_play').innerHTML = '';
   console.log(params.countRounds);
@@ -68,9 +66,7 @@ function startNewGame () {
   }
   else {
     document.getElementById('info_play').innerHTML = 'You can play - make the first move';
-    // document.getElementById('countRounds').innerHTML = params.countRounds;
   }
-
 };
 
 
@@ -248,12 +244,12 @@ var showModal = function(event){
   document.querySelector(activeModalLink).classList.add('show');     
 };
 
-(function () {
+
   var allModalLinks = document.querySelectorAll('.show-modal');
   for(var i = 0; i < allModalLinks.length; i++){
   allModalLinks[i].addEventListener('click', showModal);
   }
-})();
+
 
 // Funkcja zamykającą modal, oraz przywiązujemy ją do kliknięć na elemencie z klasą "close". 
 
@@ -274,7 +270,7 @@ var hideModal = function(event){
     }
 };	
 
-(function () {
+
   var closeButtons = document.querySelectorAll('.modal .close');	
   for(var i = 0; i < closeButtons.length; i++){
     closeButtons[i].addEventListener('click', hideModal);
@@ -292,3 +288,4 @@ var modals = document.querySelectorAll('.modal');
 }
 
 })();
+
